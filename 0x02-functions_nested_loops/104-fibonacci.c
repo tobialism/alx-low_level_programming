@@ -1,34 +1,53 @@
-#!/bin/bash
-# Description: Compile and run 104-fibonacci.c from header file
+#include <stdio.h>
 
-# Constants
-CC="gcc"
-CFLAGS="-Wall -Werror -Wextra -pedantic"
-OUTPUT_EXEC="fib"
-HEADER_FILE="104-header.h"
-SOURCE_FILE="104-fibonacci.c"
 
-# Copy header into source file
-echo "#include<stdio.h>" > $SOURCE_FILE
-cat $HEADER_FILE >> $SOURCE_FILE
+/**
+ * main - fibonacci <3
+ *
+ * Purpose - no hardcode
+ *
+ * Return:  (Success)
+ */
 
-# Compile
-$CC $CFLAGS $SOURCE_FILE -o $OUTPUT_EXEC
 
-if [ $? -ne 0 ]; then
-    echo "Error compiling $SOURCE_FILE" 
-    exit 1
-fi
+int main(void)
+{
+	unsigned long int i;
+	unsigned long int bef = 1;
+	unsigned long int aft = 2;
+	unsigned long int l = 1000000000;
+	unsigned long int bef1;
+	unsigned long int bef2;
+	unsigned long int aft1;
+	unsigned long int aft2;
 
-# Run
-./$OUTPUT_EXEC 
 
-if [ $? -ne 0 ]; then
-    echo "Error executing ./$OUTPUT_EXEC"
-    exit 2
-fi
+	printf("%lu", bef);
 
-# Clean up
-rm $SOURCE_FILE $OUTPUT_EXEC
 
-exit 0
+	for (i = 1; i < 91; i++)
+	{
+		printf(", %lu", aft);
+		aft += bef;
+		bef = aft - bef;
+	}
+
+
+	bef1 = (bef / l);
+	bef2 = (bef % l);
+	aft1 = (aft / l);
+	aft2 = (aft % l);
+
+
+	for (i = 92; i < 99; ++i)
+	{
+		printf(", %lu", aft1 + (aft2 / l));
+		printf("%lu", aft2 % l);
+		aft1 = aft1 + bef1;
+		bef1 = aft1 - bef1;
+		aft2 = aft2 + bef2;
+		bef2 = aft2 - bef2;
+	}
+	printf("\n");
+	return (0);
+}
