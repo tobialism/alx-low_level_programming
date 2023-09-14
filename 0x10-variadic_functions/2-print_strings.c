@@ -3,8 +3,8 @@
 #include <stdarg.h>
 
 /**
- * To print_strings - You Have To Prints Strings, Followed By a New Line.
- * @separator: Is the string to be printed between strings.
+ * print_strings - Prints strings, followed by a new line.
+ * @separator: The string to be printed between strings.
  * @n: The number of strings passed to the function.
  * @...: A variable number of strings to be printed.
  *
