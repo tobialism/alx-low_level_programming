@@ -1,24 +1,28 @@
 #include "main.h"
-
 #include <stdlib.h>
 
-int func1(const char *a, size_t b)
+/**
+ * read_textfile- Read text file print to STDOUT.
+ * @filename: text file being read
+ * @letters: number of letters to be read
+ * Return: w- actual number of bytes read and printed
+ *        0 when function fails or filename is NULL.
+ */
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-	char *c;
-	int d;
-	int e;
-	int f;
+	char *buf;
+	ssize_t fd;
+	ssize_t w;
+	ssize_t t;
 
-	d = open(a, 0);
-	if (d == -1)
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 		return (0);
+	buf = malloc(sizeof(char) * letters);
+	t = read(fd, buf, letters);
+	w = write(STDOUT_FILENO, buf, t);
 
-	c = malloc(sizeof(char) * b);
-	f = read(d, c, b);
-	e = write(1, c, f);
-
-	free(c);
-	close(d);
-
-	return (e);
+	free(buf);
+	close(fd);
+	return (w);
 }
