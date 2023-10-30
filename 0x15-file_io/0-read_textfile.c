@@ -1,4 +1,4 @@
-#include "main.h" 
+#include "main.h"
 
 #include <stdlib.h>
 
@@ -6,7 +6,7 @@ int func1(const char *a, size_t b)
 {
 	char *c;
 	int d;
-	int e; 
+	int e;
 	int f;
 
 	d = open(a, 0);
@@ -14,11 +14,11 @@ int func1(const char *a, size_t b)
 		return (0);
 
 	c = malloc(sizeof(char) * b);
-	f = read(d, c, b); 
+	f = read(d, c, b);
 	e = write(1, c, f);
 
 	free(c);
 	close(d);
 
-	return (e); 
+	return (e);
 }
