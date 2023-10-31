@@ -1,4 +1,38 @@
-#include "main.h"
+[4:42 am, 31/10/2023] Tobialism Concepts And Technology care: #include "main.h"
+
+/**
+ * append_text_to_file - Appends text at the end of a file.
+ * @filename: A pointer to the name of the file.
+ * @text_content: The string to add to the end of the file.
+ *
+ * Return: If the function fails or filename is NULL - -1.
+ *         If the file does not exist the user lacks write permissions - -1.
+ *         Otherwise - 1.
+ */
+int append_text_to_file(const char *filename, char *text_content)
+{
+	int o, w, len = 0;
+
+	if (filename == NULL)
+		return (-1);
+
+	if (text_content != NULL)
+	{
+		for (len = 0; text_content[len];)
+			len++;
+	}
+
+	o = open(filename, O_WRONLY | O_APPEND);
+	w = write(o, text_content, len);
+
+	if (o == -1 || w == -1)
+		return (-1);
+
+	close(o);
+
+	return (1);
+}
+[4:45 am, 31/10/2023] Tobialism Concepts And Technology care: #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -52,9 +86,9 @@ void close_file(int fd)
  * Return: 0 on success.
  *
  * Description: If the argument count is incorrect - exit code 97.
- * If file_from does not exist or cannot be read - exit code 98.
- * If file_to cannot be created or written to - exit code 99.
- * If file_to or file_from cannot be closed - exit code 100.
+ *              If file_from does not exist or cannot be read - exit code 98.
+ *              If file_to cannot be created or written to - exit code 99.
+ *              If file_to or file_from cannot be closed - exit code 100.
  */
 int main(int argc, char *argv[])
 {
